@@ -1,0 +1,20 @@
+.boton-hover {
+    position: relative;
+    color: #F3EFE0;
+}
+.boton-hover:after{
+    content: "";
+    position: absolute;
+    background-color: #22A39F;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: 0px;
+    transition: 0.3s;
+}
+.boton-hover:hover{
+    color: #ffffff;
+}
+.boton-hover:hover:after{
+    width: 100%;
+}

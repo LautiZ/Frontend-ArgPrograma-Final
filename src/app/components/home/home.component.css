@@ -1,0 +1,35 @@
+.contenido-principal {
+    width: 55%;
+    float: left;
+}
+
+.aside {
+    width: 45%;
+    float: right;
+}
+
+@media (max-width: 737px) {
+    .contenido-principal {
+        width: 100%;
+
+    }
+    
+    .aside {
+        width: 100%;
+    }
+}
+
+.fondo {
+    background-image: url("../../../assets/img/asd.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 90vh;
+    -webkit-box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,1);
+    -moz-box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,1);
+    box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,1);
+}
+
+.prueba {
+    backdrop-filter: blur(10px);
+}

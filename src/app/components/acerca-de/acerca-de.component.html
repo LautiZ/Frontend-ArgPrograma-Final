@@ -1,0 +1,23 @@
+<div class="my-4">
+    <div class="d-flex py-2 mb-4" style="color: #F3EFE0;">
+        <div class="me-3">
+            <h2 class="fs-1 mb-0">{{persona.nombre}} {{persona.apellido}}</h2>
+            <span class="fs-6 my-0">Fullstack Developer Jr</span>
+        </div>
+        <button class="btn btn-outline-info my-3" type="button" routerLink="editaboutme/1" *ngIf="isLogged && isAdmin">
+            <i class="bi bi-pencil"></i>
+            Editar persona
+        </button>
+    </div>
+    <div class="inner">&nbsp;</div>
+    <div class="container mx-0 px-0 my-5" style="color: #F3EFE0;">
+        <div class="row">
+            <div class="col-6">
+                <h3>About me</h3>
+                <p class="ms-3">{{persona.descripcion}}</p>
+            </div>
+            <img class="img-fluid col-6 imagen mx-auto shadow-sm" src="assets/img/profile.jpg" alt="imagen de perfil">
+        </div>
+    </div>
+    <div class="inner">&nbsp;</div>
+</div>

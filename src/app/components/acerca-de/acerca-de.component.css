@@ -1,0 +1,11 @@
+.imagen {
+    max-width: 40%;
+    height: 40%;
+}
+
+.inner {
+    width: 80%;
+    height: 1px;
+    margin: 0px auto;
+    border-bottom: 1px solid #22A39F;
+}

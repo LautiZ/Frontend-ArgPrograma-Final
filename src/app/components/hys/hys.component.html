@@ -1,0 +1,30 @@
+<div class="mt-4" style="color: #F3EFE0;">
+    <div class="d-flex">
+        <h3 class="row me-4">Hard & Soft Skills</h3>
+        <button class="row btn btn-outline-info rounded-5 px-0 py-0 my-2" type="button" routerLink="/newskill" *ngIf="isLogged && isAdmin">
+            <i class="bi bi-plus-lg"></i>
+        </button>
+    </div>
+
+    <div div class="row mb-5">
+        <div class="card mb-0 border-dark col-6" style="width: 18rem; background-color: transparent; border: none;" *ngFor="let skills of skill">
+            <div class="card-body">
+              <h4 class="card-title">{{skills.name}}</h4>
+              <p class="card-text">
+                  Desde hace {{skills.time}} año/s
+              </p>
+            </div>
+            <div class="d-flex justify-content-between" *ngIf="isLogged && isAdmin">
+                <button class="btn btn-outline-info" routerLink="/editskill/{{skills.id}}" style="width: 45%;">
+                    <i class="bi bi-pencil"></i>
+                    Editar
+                </button>
+                <button class="btn btn-outline-danger" (click)="deletes(skills.id)" style="width: 45%;">
+                    <i class="bi bi-trash3"></i>
+                    Borrar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="inner">&nbsp;</div>
+</div>
