@@ -17,7 +17,7 @@ export class EditAcercaDeComponent implements OnInit{
       private activatedRoute: ActivatedRoute, 
       private personaService: PersonaService, 
       private router: Router,
-      private imageService: ImageService
+      public imageService: ImageService
     ) {}
 
   ngOnInit(): void {
@@ -33,6 +33,7 @@ export class EditAcercaDeComponent implements OnInit{
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
+    this.per.img = this.imageService.url;
     this.personaService.update(id, this.per).subscribe(data => {
       this.router.navigate(['']);
     }, err => {
@@ -42,6 +43,9 @@ export class EditAcercaDeComponent implements OnInit{
   }
 
   uploadImage($event: any) {
-    this.imageService.uploadImage($event);
+    const id = this.activatedRoute.snapshot.params['id'];
+    const name = "perfil_" + id;
+    this.imageService.uploadImage($event, name);
   }
+
 }

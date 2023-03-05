@@ -26,7 +26,10 @@
 
             <div class="mb-3">
                 <label for="img" class="form-label fw-semibold">Imagen</label>
-                <input class="form-control bg-dark" data-show-preview="false" type="file" id="img" name="img" [(ngModel)]="per.img" (change)="uploadImage($event)" accept=".jpg, .jpeg, .png" style="border: none; color: #F3EFE0; border-bottom: 2px solid #22A39F; border-radius: 0;">
+                <input class="form-control bg-dark mb-3" data-show-preview="false" type="file" id="img" name="img" [(ngModel)]="per.img" (change)="uploadImage($event)" accept=".jpg, .jpeg, .png" style="border: none; color: #F3EFE0; border-bottom: 2px solid #22A39F; border-radius: 0;">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img class="image-fluid mx-auto" [src]="imageService.url" alt="" width="100px" style="border-radius: 50%;">
+                </div>
             </div>
 
             <div class="mb-3 d-grid gap-2">
