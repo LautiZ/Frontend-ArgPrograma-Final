@@ -8,7 +8,7 @@ export const environment = {
     authDomain: 'front-argprograma-finalproject.firebaseapp.com',
     messagingSenderId: '286714920621',
   },
-    production: false,
+    production: true,
 
     // URL: 'http://localhost:8080/' // URL de desarrollo
     URL: 'https://api-argprograma-finalproject.onrender.com/'

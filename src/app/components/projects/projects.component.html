@@ -1,0 +1,38 @@
+<div class="mb-3 mt-5" style="color: #F3EFE0;">
+    <div class="d-flex">
+        <h3 class="row me-4">Projects</h3>
+        <button class="row btn btn-outline-info rounded-5 px-0 py-0 my-2" type="button" routerLink="/newproject" *ngIf="isLogged && isAdmin">
+            <i class="bi bi-plus-lg"></i>
+        </button>
+    </div>
+
+    <div class="mb-4">
+        <div class="card mb-0 border-dark" style="width: 18rem; background-color: transparent; border: none; min-width: 100%;" *ngFor="let Projects of projects">
+            <div class="card-body">
+                <div class="mb-2">
+                    <h5 class="card-title my-0">{{Projects.title}}</h5>
+                    <span class="fw-semibold mt-0 ms-3" style="font-size: 1.3vh; color: #dbd8cb;">{{Projects.subtitle}}</span>
+                </div>
+
+                <img *ngIf="Projects.imgProject != 'Añadir imagen'" src={{Projects.imgProject}} alt={{Projects.imgProject}} class="img-fluid rounded ms-3 mb-3" style="border: 2px solid #22A39F;">
+                <img *ngIf="Projects.imgProject == 'Añadir imagen'" src='../../../assets/img/imageNotFound.png' alt={{Projects.imgProject}} class="img-fluid rounded ms-3 mb-3" style="border: 2px solid #22A39F;">
+
+                <p class="card-text ms-3">{{Projects.description}}</p>
+
+                <div class="d-grid gap-2 mb-3">
+                    <a *ngIf="Projects.linkProject != ''" href={{Projects.linkProject}} class="btn btn-outline-info" target="_blank">Link al proyecto</a>
+                </div>
+                <div class="d-flex justify-content-between" *ngIf="isLogged && isAdmin">
+                    <button class="btn btn-outline-info" routerLink="/editproject/{{Projects.id}}" style="width: 45%;">
+                        <i class="bi bi-pencil"></i>
+                        Editar
+                    </button>
+                    <button class="btn btn-outline-danger" (click)="deleteProject(Projects.id)" style="width: 45%;">
+                        <i class="bi bi-trash3"></i>
+                        Borrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

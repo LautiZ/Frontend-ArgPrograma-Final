@@ -1,31 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { persona } from 'src/app/models/persona.model';
+import { Projects } from 'src/app/models/projects';
 import { ImageService } from 'src/app/service/image.service';
-import { PersonaService } from 'src/app/service/persona.service';
+import { ProjectsService } from 'src/app/service/projects.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-edit-acerca-de',
-  templateUrl: './edit-acerca-de.component.html',
-  styleUrls: ['./edit-acerca-de.component.css']
+  selector: 'app-edit-project',
+  templateUrl: './edit-project.component.html',
+  styleUrls: ['./edit-project.component.css']
 })
-export class EditAcercaDeComponent implements OnInit{
+export class EditProjectComponent implements OnInit{
 
-  per: persona = null;
+  project: Projects = null;
 
   constructor(
-      private activatedRoute: ActivatedRoute, 
-      private personaService: PersonaService, 
-      private router: Router,
-      public imageService: ImageService
-    ) {}
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    public imageService: ImageService,
+    public projectService: ProjectsService
+  ) {}
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
 
-    this.personaService.detail(id).subscribe(data => {
-      this.per = data;
+    this.projectService.detail(id).subscribe(data => {
+      this.project = data;
     }, err => {
       alert('No se pudo editar❗');
       this.router.navigate(['']);
@@ -34,7 +34,7 @@ export class EditAcercaDeComponent implements OnInit{
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.per.img = this.imageService.url;
+    this.project.imgProject = this.imageService.url;
     Swal.fire({
       title: 'Estas seguro de guardar los cambios?',
       showDenyButton: true,
@@ -44,7 +44,7 @@ export class EditAcercaDeComponent implements OnInit{
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.personaService.update(id, this.per).subscribe(data => {
+        this.projectService.update(id, this.project).subscribe(data => {
           this.router.navigate(['']);
         }, err => {
           Swal.fire({
@@ -70,8 +70,7 @@ export class EditAcercaDeComponent implements OnInit{
 
   uploadImage($event: any) {
     const id = this.activatedRoute.snapshot.params['id'];
-    const name = "perfil_" + id;
+    const name = "project_" + id;
     this.imageService.uploadImage($event, name);
   }
-
 }

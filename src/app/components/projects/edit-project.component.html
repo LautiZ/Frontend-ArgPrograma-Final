@@ -1,0 +1,44 @@
+<div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="card px-1 py-3 bg-dark carta" style="color: #F3EFE0;">
+
+        <div class="d-flex align-items-center justify-content-center mx-auto p-4" style="background-color: #F3EFE0; width: 30%; border-radius: 50%;">
+            <img class="img-fluid mx-auto imagen" src="assets/img/forms/html.png" alt="imagen editar acerca de">
+        </div>
+
+        <h3 class="text-center mt-3">Editar proyecto</h3>
+        <div class="inner mb-3">&nbsp;</div>
+
+        <form (ngSubmit)="onUpdate()" novalidate #f="ngForm" *ngIf="project" class="mx-auto">
+            <div class="mb-3">
+                <label for="title" class="form-label fw-semibold">Title</label>
+                <input class="form-control bg-dark" type="text" id="title" name="title" [(ngModel)]="project.title" required style="border: none; color: #F3EFE0; border-bottom: 2px solid #22A39F; border-radius: 0;">
+            </div>
+
+            <div class="mb-3">
+                <label for="subtitle" class="form-label fw-semibold">Subtitle</label>
+                <input class="form-control bg-dark" type="text" id="subtitle" name="subtitle" [(ngModel)]="project.subtitle" required style="border: none; color: #F3EFE0; border-bottom: 2px solid #22A39F; border-radius: 0;">
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label fw-semibold">Description</label>
+                <textarea rows="8" cols="33" class="form-control bg-dark" type="text" id="description" name="description" [(ngModel)]="project.description" required style="height: 50%; resize: none; border: none; color: #F3EFE0; border-bottom: 2px solid #22A39F; border-radius: 0;"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="imgProject" class="form-label fw-semibold">Imagen</label>
+                <input class="form-control bg-dark mb-3" data-show-preview="false" type="file" id="imgProject" name="imgProject" [(ngModel)]="project.imgProject" (change)="uploadImage($event)" accept=".jpg, .jpeg, .png" style="border: none; color: #F3EFE0; border-bottom: 2px solid #22A39F; border-radius: 0;">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img class="image-fluid mx-auto rounded" [src]="imageService.url" alt="" width="100px">
+                </div>
+            </div>
+
+            <div class="mb-3 d-grid gap-2">
+                <button type="submit" class="btn btn-outline-info">Actualizar</button>
+            </div>
+        </form>
+    </div>
+
+    <a href="/" class="btn-flotante">
+        <i class="bi bi-caret-left-fill"></i>
+    </a>
+</div>

@@ -29,7 +29,3 @@
     -moz-box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,1);
     box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,1);
 }
-
-.prueba {
-    backdrop-filter: blur(10px);
-}

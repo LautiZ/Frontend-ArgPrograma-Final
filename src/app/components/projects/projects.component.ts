@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Education } from 'src/app/models/education';
-import { EducationService } from 'src/app/service/education.service';
+import { Projects } from 'src/app/models/projects';
+import { ProjectsService } from 'src/app/service/projects.service';
 import { TokenService } from 'src/app/service/token.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-education',
-  templateUrl: './education.component.html',
-  styleUrls: ['./education.component.css']
+  selector: 'app-projects',
+  templateUrl: './projects.component.html',
+  styleUrls: ['./projects.component.css']
 })
-export class EducationComponent implements OnInit{
-  education: Education[] = [];
+export class ProjectsComponent implements OnInit{
+  projects: Projects[] = [];
   
-  constructor(private eduS: EducationService, private tokenService: TokenService) {}
+  constructor(private tokenService: TokenService, private sProjects: ProjectsService) {}
 
   isLogged = false;
   isAdmin = false;
   
   ngOnInit(): void {
-    this.cargarEdu();
+    this.cargarProjects();
     this.isAdminTest();
     if(this.tokenService.getToken()) {
       this.isLogged = true;
@@ -26,7 +26,6 @@ export class EducationComponent implements OnInit{
       this.isLogged = false;
     }
   }
-
 
   isAdminTest(): void {
     const admin = this.tokenService.getAuthorities().find(r => r == 'ROLE_ADMIN');
@@ -38,15 +37,14 @@ export class EducationComponent implements OnInit{
     }
   }
 
-  cargarEdu(): void {
-    this.eduS.list().subscribe(data => {
-      this.education = data;
-    })
+  cargarProjects(): void {
+    this.sProjects.lista().subscribe(
+      data => {this.projects = data}
+    )
   }
 
-  deleteEdu(id?: number) {
+  deleteProject(id?: number): void {
     if(id != undefined) {
-
       Swal.fire({
         title: 'Estas seguro de eliminar?',
         text: "No vas a poder revertir esto!",
@@ -57,8 +55,8 @@ export class EducationComponent implements OnInit{
         confirmButtonText: 'Si, eliminar!'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.eduS.delete(id).subscribe(data => {
-            this.cargarEdu();
+          this.sProjects.delete(id).subscribe(data => {
+            this.cargarProjects();
           }, err => {
             Swal.fire({
               position: 'top-end',
@@ -70,7 +68,7 @@ export class EducationComponent implements OnInit{
           })
           Swal.fire(
             'Eliminada!',
-            'Se elimino la educacion',
+            'Se elimino la experiencia',
             'success'
           )
         }

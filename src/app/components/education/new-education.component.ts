@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Education } from 'src/app/models/education';
 import { EducationService } from 'src/app/service/education.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-neweducation',
@@ -21,10 +22,22 @@ export class NewEducationComponent implements OnInit{
   onCreate(): void {
     const edu = new Education(this.titleEd, this.descriptionEd);
     this.eduS.save(edu).subscribe(data => {
-      alert("Educacion añadida 🔥");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Educacion añadida',
+        showConfirmButton: false,
+        timer: 1500
+      })
       this.router.navigate(['']);
     }, err => {
-      alert("No se pudo crear❗");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Error al añadir',
+        showConfirmButton: false,
+        timer: 1500
+      })
       this.router.navigate(['']);
     })
   }

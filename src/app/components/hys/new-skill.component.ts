@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Skill } from 'src/app/models/skill';
 import { SkillService } from 'src/app/service/skill.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-skill',
@@ -21,10 +22,22 @@ export class NewSkillComponent implements OnInit{
   onCreate(): void {
     const skill = new Skill(this.name, this.time);
     this.skillS.save(skill).subscribe(data => {
-      alert("Skill creada 🔥")
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Skill añadida',
+        showConfirmButton: false,
+        timer: 1500
+      })
       this.router.navigate(['']);
     }, err => {
-      alert("Error al crear skill 🚫");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Error al añadir',
+        showConfirmButton: false,
+        timer: 1500
+      })
       this.router.navigate(['']);
     });
   }

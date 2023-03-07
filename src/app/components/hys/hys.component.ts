@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Skill } from 'src/app/models/skill';
 import { SkillService } from 'src/app/service/skill.service';
 import { TokenService } from 'src/app/service/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-hys',
@@ -46,10 +47,33 @@ export class HysComponent implements OnInit{
 
   deletes(id: number): void {
     if(id != undefined) {
-      this.skillS.deletes(id).subscribe(data => {
-        this.cargarSkills();
-      }, err => {
-        alert('No se pudo borrar 🚫');
+      Swal.fire({
+        title: 'Estas seguro de eliminar?',
+        text: "No vas a poder revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.skillS.deletes(id).subscribe(data => {
+            this.cargarSkills();
+          }, err => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'No se pudo eliminar',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          })
+          Swal.fire(
+            'Eliminada!',
+            'Se elimino la skill',
+            'success'
+          )
+        }
       })
     }
   }
